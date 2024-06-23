@@ -8,11 +8,6 @@ cot/gpt-3.5-turbo:
   args:
     cot_completion_fn: gpt-3.5-turbo
 
-cot/gpt-3.5-turbo-1106":
-  class: evals.completion_fns.cot:ChainOfThoughtCompletionFn
-  args:
-    cot_completion_fn: gpt-3.5-turbo-1106"
-
 cot/gpt-3.5-turbo-0125:
   class: evals.completion_fns.cot:ChainOfThoughtCompletionFn
   args:
@@ -52,15 +47,3 @@ cot/gpt-4o:
   class: evals.completion_fns.cot:ChainOfThoughtCompletionFn
   args:
     cot_completion_fn: gpt-4o
-
-  
-cot/flan-t5-xl:
-  class: evals.completion_fns.cot:ChainOfThoughtCompletionFn
-  args:
-    cot_completion_fn: langchain/llm/flan-t5-xl
-
-cot:
-  class: evals.completion_fns.cot:ChainOfThoughtCompletionFn
-  args:
-    # Default to gpt-3.5-turbo, but can be overridden in CLI --completion_args "cot_completion_fn=<completion_fn>"
-    cot_completion_fn: gpt-3.5-turbo

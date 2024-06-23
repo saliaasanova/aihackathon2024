@@ -79,6 +79,6 @@ i = 0
 
 for model, index in sorted_models:
     i += 1
-    print(f"| {i:<4} | {model:<{max_model_name_length}} | {round(index ,1):^7} | ${round(model_costs[model]/1000,1):>10} USD |")
+    print(f"| {i:<4} | {model:<{max_model_name_length}} | {round(index ,1):^9} | ${round(model_costs[model]/1000,1):>10} USD |")
 
 print(f"+------+ {'-'*(max_model_name_length+2)} +---------+ --------------- +")

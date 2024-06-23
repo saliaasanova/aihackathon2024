@@ -1,0 +1,10 @@
+bankqa:
+  id: bankqa.dev.v0
+  description: 
+  metrics: [accuracy]
+bankqa.dev.v0:
+  class: evals.elsuite.modelgraded.classify:ModelBasedClassify
+  args:
+    samples_jsonl: bankqa/samples.jsonl
+    eval_type: cot_classify
+    modelgraded_spec: fact

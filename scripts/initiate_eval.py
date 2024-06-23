@@ -1,15 +1,8 @@
 import os
 import argparse
+import subprocess
 
 def main(jsonl_file_path, eval_name):
-    # Command to transform the CSV file into JSONL
-    # command = f'openai tools fine_tunes.prepare_data -f {csv_file_path}'
-
-    # # Execute the command
-    # subprocess.run(command, shell=True)
-
-    # # Determine the resulting JSONL file path
-    # base_name = os.path.basename(csv_file_path).replace('.csv', '_prepared.jsonl')
     jsonl_file_path = jsonl_file_path
 
     # Define the destination path for the JSONL file
@@ -48,7 +41,9 @@ def main(jsonl_file_path, eval_name):
         yaml_file.write(yaml_content.strip())
 
     print(f"YAML file saved to {yaml_file_path}")
-
+    
+ 
+    
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Transform CSV to JSONL, create eval YAML file, and save to specified paths.')
     parser.add_argument('csv_file_path', type=str, help='The path to the CSV file.')

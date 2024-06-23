@@ -1,0 +1,10 @@
+gymqa:
+  id: gymqa.dev.v0
+  description: 
+  metrics: [accuracy]
+gymqa.dev.v0:
+  class: evals.elsuite.modelgraded.classify:ModelBasedClassify
+  args:
+    samples_jsonl: gymqa/samples.jsonl
+    eval_type: cot_classify
+    modelgraded_spec: fact

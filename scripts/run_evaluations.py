@@ -1,21 +1,27 @@
 import subprocess
 import yaml
 import re
+import argparse
+
+# Parse command-line arguments
+parser = argparse.ArgumentParser(description="Run model evaluations and calculate indices.")
+parser.add_argument("task", type=str, help="The task to evaluate")
+args = parser.parse_args()
 
 # Path to the cot.yaml file
 cot_yaml_path = "evals/registry/completion_fns/cot.yaml"
 
 costs = {
-    "cot/gpt-3.5-turbo-instruct":{"input":1.5,"output":2},
-    "cot/gpt-3.5-turbo" :{"input": 0.5,"output": 2},
-    "cot/gpt-3.5-turbo-0125" :{"input" : 0.5,"output" : 1.5},
-    "cot/gpt-4" :{"input": 30,"output":60},
-    "cot/gpt-4-0613" :{"input": 60,"output":120},
-    "cot/gpt-4-turbo" :{"input": 10,"output":30},
-    "cot/gpt-4-1106-preview" :{"input": 10,"output":30},
-    "cot/gpt-4-0125-preview" :{"input": 10,"output":30},
-    "cot/gpt-4o-2024-05-13" :{"input": 5,"output":15},
-    "cot/gpt-4o" :{"input": 5,"output":15},    
+    "cot/gpt-3.5-turbo-instruct": {"input": 1.5, "output": 2},
+    "cot/gpt-3.5-turbo": {"input": 0.5, "output": 2},
+    "cot/gpt-3.5-turbo-0125": {"input": 0.5, "output": 1.5},
+    "cot/gpt-4": {"input": 30, "output": 60},
+    "cot/gpt-4-0613": {"input": 60, "output": 120},
+    "cot/gpt-4-turbo": {"input": 10, "output": 30},
+    "cot/gpt-4-1106-preview": {"input": 10, "output": 30},
+    "cot/gpt-4-0125-preview": {"input": 10, "output": 30},
+    "cot/gpt-4o-2024-05-13": {"input": 5, "output": 15},
+    "cot/gpt-4o": {"input": 5, "output": 15},
 }
 
 # Load the cot.yaml file
@@ -26,7 +32,7 @@ with open(cot_yaml_path, "r") as file:
 models = list(cot_config.keys())
 
 # Task to evaluate
-task = "ab"
+task = args.task
 
 # Dictionary to store final report data
 final_reports = {}
@@ -62,8 +68,8 @@ for model, report in final_reports.items():
     counts_E = report.get("counts/E", 0)
     inputToken = report.get("usage_prompt_tokens", 0)
     outputToken = report.get("usage_completion_tokens", 0)
-    index = (counts_C * 1 + counts_B*0.8 + counts_A * 0.7 + counts_E*0.5 - counts_D)*100
-    totalCost = inputToken*costs[model]["input"] + outputToken*costs[model]["output"]
+    index = (counts_C * 1 + counts_B * 0.8 + counts_A * 0.7 + counts_E * 0.5 - counts_D) * 100
+    totalCost = inputToken * costs[model]["input"] + outputToken * costs[model]["output"]
     model_indices[model] = index
     model_costs[model] = totalCost
 

@@ -1,0 +1,10 @@
+newqa:
+  id: newqa.dev.v0
+  description: 
+  metrics: [accuracy]
+newqa.dev.v0:
+  class: evals.elsuite.modelgraded.classify:ModelBasedClassify
+  args:
+    samples_jsonl: newqa/samples.jsonl
+    eval_type: cot_classify
+    modelgraded_spec: fact

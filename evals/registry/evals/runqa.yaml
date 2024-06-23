@@ -1,0 +1,10 @@
+runqa:
+  id: runqa.dev.v0
+  description: 
+  metrics: [accuracy]
+runqa.dev.v0:
+  class: evals.elsuite.modelgraded.classify:ModelBasedClassify
+  args:
+    samples_jsonl: runqa/samples.jsonl
+    eval_type: cot_classify
+    modelgraded_spec: fact

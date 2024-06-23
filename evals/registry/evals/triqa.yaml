@@ -1,0 +1,10 @@
+triqa:
+  id: triqa.dev.v0
+  description: 
+  metrics: [accuracy]
+triqa.dev.v0:
+  class: evals.elsuite.modelgraded.classify:ModelBasedClassify
+  args:
+    samples_jsonl: triqa/samples.jsonl
+    eval_type: cot_classify
+    modelgraded_spec: fact

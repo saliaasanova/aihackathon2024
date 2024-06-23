@@ -37,7 +37,7 @@ final_report_pattern = re.compile(r"\[oaieval.py:\d+\] ([\w/_]+): (\d+)")
 # Iterate through each model and run the evaluation command
 for model in models:
     command = ["oaieval", model, task]
-    print(f"Running: {' '.join(command)}")
+    print(f"Evaluating: {' '.join(command)}")
     result = subprocess.run(command, capture_output=True, text=True)
     
     # Extract final report data
@@ -79,6 +79,6 @@ i = 0
 
 for model, index in sorted_models:
     i += 1
-    print(f"| {i:<4} | {model:<{max_model_name_length}} | {round(index ,1):^7} | ${round(model_costs[model],0):>10} USD |")
+    print(f"| {i:<4} | {model:<{max_model_name_length}} | {round(index ,1):^7} | ${round(model_costs[model]/1000,1):>10} USD |")
 
 print(f"+------+ {'-'*(max_model_name_length+2)} +---------+ --------------- +")

@@ -48,6 +48,11 @@ cot/gpt-4o-2024-05-13:
   args:
     cot_completion_fn: gpt-4o-2024-05-13
 
+cot/gpt-4o:
+  class: evals.completion_fns.cot:ChainOfThoughtCompletionFn
+  args:
+    cot_completion_fn: gpt-4o
+
   
 cot/flan-t5-xl:
   class: evals.completion_fns.cot:ChainOfThoughtCompletionFn
